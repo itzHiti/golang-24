@@ -1,4 +1,4 @@
-module tsis1-web-app
+module tsis1
 
 go 1.21.6
 

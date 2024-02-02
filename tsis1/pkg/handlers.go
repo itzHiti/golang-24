@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
+	"tsis1/internal"
+
 	"github.com/gorilla/mux"
 )
 
@@ -14,7 +16,7 @@ func HealthCheck(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetTeamsHandler(w http.ResponseWriter, r *http.Request) {
-	teams := teams.GetTeams()
+	teams := internal.GetTeams()
 	respondWithJSON(w, http.StatusOK, teams)
 }
 
@@ -24,7 +26,7 @@ func GetPlayerHandler(w http.ResponseWriter, r *http.Request) {
 	teamName := vars["teamName"]
 	playerName := vars["playerName"]
 
-	player, found := teams.GetPlayerByName(teamName, playerName)
+	player, found := internal.GetPlayerByName(teamName, playerName)
 	if !found {
 		respondWithError(w, http.StatusNotFound, "Player not found")
 		return
